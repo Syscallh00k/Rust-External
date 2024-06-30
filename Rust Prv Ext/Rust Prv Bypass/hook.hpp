@@ -14,7 +14,7 @@ struct Table {
 struct VTable {
 	ULONG a1 = 0x4, // add 4
 		a2 = 0x0, // add 0
-		a3 = 0x7, // push right 0x7 bytes
+		a3 = 0x7, // shift 0x7 bytes
 		a4 = 0x8, // add 8
 		a5 = 0x8; //  0x8 -> MmMapIoSpace
 }; VTable TableList;
