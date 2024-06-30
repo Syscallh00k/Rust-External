@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Driver Files">
+      <UniqueIdentifier>{8E41214B-6785-4CFE-B992-037D68949A14}</UniqueIdentifier>
+      <Extensions>inf;inv;inx;mof;mc;</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Bypass">
+      <UniqueIdentifier>{235438d1-df62-4e41-a704-8a9b56057fe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bypass\Imports">
+      <UniqueIdentifier>{e6ba38e9-a46f-4aff-8396-8a1ebec5cfbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bypass\Memory">
+      <UniqueIdentifier>{c3245799-8f58-4445-9d33-ca8e624992f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bypass\hook">
+      <UniqueIdentifier>{bf58055a-c0c7-46db-8af6-b892422048f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Inf Include="RustPrvBypass.inf">
+      <Filter>Driver Files</Filter>
+    </Inf>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Entry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.hpp">
+      <Filter>Source Files\Bypass\Memory</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Imports.hpp">
+      <Filter>Source Files\Bypass\Imports</Filter>
+    </ClInclude>
+    <ClInclude Include="hook.hpp">
+      <Filter>Source Files\Bypass\hook</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

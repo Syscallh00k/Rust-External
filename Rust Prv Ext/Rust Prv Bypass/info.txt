@@ -1,0 +1,30 @@
+cpuz141.sys MmMapIoSpace/MmUnmapIoSpace
+
+Device Name: "\\.\cpuz141"
+Read Register IOCTL: 0x9C402428
+Physical Read: 0x9C402420
+Physical Write: 0x9C402430
+
+Notes: CVE-2017-15303
+
+PVOID (__stdcall *MmMapIoSpace)(PHYSICAL_ADDRESS PhysicalAddress, SIZE_T NumberOfBytes, MEMORY_CACHING_TYPE CacheType)
+.idata:0000000000008070 ?? ?? ?? ?? ?? ?? ?? ??           extrn MmMapIoSpace:qword 
+
+.text:0000000000002962 44 89 BC 24 54 02 00 00       mov     dword ptr [rsp+4C8h+var_278+4], r15d
+.text:000000000000296A 03 C7                         add     eax, edi
+.text:000000000000296C 89 84 24 50 02 00 00          mov     dword ptr [rsp+4C8h+var_278], eax
+.text:0000000000002973 45 33 C0                      xor     r8d, r8d                        ; CacheType
+.text:0000000000002976 41 8D 50 08                   lea     edx, [r8+8]                     ; NumberOfBytes
+.text:000000000000297A 48 8B 8C 24 50 02 00 00       mov     rcx, qword ptr [rsp+4C8h+var_278] ; PhysicalAddress
+.text:0000000000002982 FF 15 E8 56 00 00             call    cs:MmMapIoSpace
+
+
+44 89 BC 24 ? ? ? ? 03 C7 
+\x44\x89\xBC\x24\x00\x00\x00\x00\x03\xC7 xxxx????xx
++ 4 bytes
+7 >> shift right + 8 + 8
+
+{0x4, 0x0,
+0x7, 0x8,
+0,x8
+}

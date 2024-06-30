@@ -1,0 +1,62 @@
+;
+; RustPrvBypass.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System ; TODO: specify appropriate Class
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider    = %ManufacturerName%
+CatalogFile = RustPrvBypass.cat
+DriverVer   = ; TODO: set DriverVer in stampinf property pages
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+RustPrvBypass.sys = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName% = Standard,NT$ARCH$.10.0...16299 ; %13% support introduced in build 16299
+
+[Standard.NT$ARCH$.10.0...16299]
+%RustPrvBypass.DeviceDesc% = RustPrvBypass_Device, Root\RustPrvBypass ; TODO: edit hw-id
+
+[RustPrvBypass_Device.NT]
+CopyFiles = File_Copy
+
+[File_Copy]
+RustPrvBypass.sys
+
+;-------------- Service installation
+[RustPrvBypass_Device.NT.Services]
+AddService = RustPrvBypass,%SPSVCINST_ASSOCSERVICE%, RustPrvBypass_Service_Inst
+
+; -------------- RustPrvBypass driver install sections
+[RustPrvBypass_Service_Inst]
+DisplayName    = %RustPrvBypass.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\RustPrvBypass.sys
+
+[RustPrvBypass_Device.NT.Wdf]
+KmdfService = RustPrvBypass, RustPrvBypass_wdfsect
+
+[RustPrvBypass_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE = 0x00000002
+ManufacturerName = "<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "RustPrvBypass Installation Disk"
+RustPrvBypass.DeviceDesc = "RustPrvBypass Device"
+RustPrvBypass.SVCDESC = "RustPrvBypass Service"
